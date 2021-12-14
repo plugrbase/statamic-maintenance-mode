@@ -1,0 +1,7 @@
+.maintenance-mode {
+  width: 100%;
+}
+.maintenance-mode .message {
+  text-align: center;
+  padding: 60px;
+}

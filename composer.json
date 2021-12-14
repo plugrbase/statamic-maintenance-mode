@@ -1,0 +1,49 @@
+{
+    "name": "plugrbase/statamic-maintenance-mode",
+    "description": "Statamic addon to set the website in maintenance mode and block all non-logged in users from accessing it.",
+    "type": "statamic-addon",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Plugrbase\\MaintenanceMode\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Plugrbase\\MaintenanceMode\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic maintenance mode",
+            "description": "Statamic addon to set the website in maintenance mode and block all non-logged in users from accessing it.",
+            "editions": [
+                "free"
+            ]
+        },
+        "laravel": {
+            "providers": [
+                "Plugrbase\\MaintenanceMode\\ServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Julien Legrand",
+            "email": "julien@nomala.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "statamic/cms": "^3.0 || ^3.1",
+        "orchestra/testbench": "^6.9"
+    },
+    "scripts": {
+        "lint": [
+            "php-cs-fixer fix ./src"
+        ],
+        "test": [
+            "php -d memory_limit=-1 -d max_execution_time=0 ./vendor/bin/phpunit"
+        ]
+    }
+}
