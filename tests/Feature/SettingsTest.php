@@ -1,9 +1,8 @@
 <?php
 
-namespace Plugrbase\MaintenanceMode\Tests;
+namespace Plugrbase\MaintenanceMode\Tests\Feature;
 
-use Statamic\Assets\AssetContainer;
-use Statamic\Facades\User;
+use Plugrbase\MaintenanceMode\Tests\TestCase;
 
 class SettingsTest extends TestCase
 {
@@ -14,10 +13,10 @@ class SettingsTest extends TestCase
         $this->signInAdmin();
     }
 
-    public function test_see_settings_form()
+    public function test_can_see_settings_form(): void
     {
         // @todo - check issue when checking route
-        // $this->get(cp_route('plugrbase.envbar.settings.index'))->assertOk();
-        $this->assertTrue(true);
+        $this->get(cp_route('plugrbase.maintenance.settings.index'))
+            ->assertSee('Maintenance mode settings');
     }
 }

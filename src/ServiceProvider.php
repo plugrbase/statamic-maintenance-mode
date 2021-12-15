@@ -45,22 +45,30 @@ class ServiceProvider extends AddonServiceProvider
                     </g></g></svg>');
         });
 
-        $this->bootAddonConfig();
+        if ($this->app->runningInConsole()) {
+            $this->bootAddonConfig();
+        }
     }
 
     protected function bootAddonConfig()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/plugrbase-maintenance-mode.php', 'statamic.plugrbase-maintenance-mode');
-
         $this->publishes([
             __DIR__.'/../config/plugrbase-maintenance-mode.php' => config_path('statamic/plugrbase-maintenance-mode.php'),
         ], 'plugrbase-maintenance-mode-config');
+
+
+        //Publish views
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/plugrbase-maintenance-mode/resources/views'),
+        ], 'plugrbase-maintenance-mode-views');
 
         return $this;
     }
 
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/plugrbase-maintenance-mode.php', 'plugrbase-maintenance-mode');
+
         parent::register();
     }
 }

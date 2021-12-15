@@ -11,12 +11,20 @@ use Statamic\Statamic;
 
 abstract class TestCase extends OrchestraTestCase
 {
+    protected bool $shouldFakeVersion = true;
+    
     /**
      * Setup the test environment.
      */
     protected function setUp(): void
     {
         parent::setUp();
+
+        if ($this->shouldFakeVersion) {
+            /** @phpstan-ignore-next-line */
+            \Facades\Statamic\Version::shouldReceive('get')->andReturn('3.0.10');
+            $this->addToAssertionCount(-1); // Dont want to assert this
+        }
     }
 
     protected function getPackageProviders($app)
@@ -51,7 +59,7 @@ abstract class TestCase extends OrchestraTestCase
         parent::resolveApplicationConfiguration($app);
 
         $configs = [
-            'assets', 'cp', 'forms', 'static_caching',
+            'assets', 'cp', 'forms', 'routes', 'static_caching',
             'sites', 'stache', 'system', 'users'
         ];
 
@@ -61,11 +69,15 @@ abstract class TestCase extends OrchestraTestCase
 
         $app['config']->set('statamic.users.repository', 'file');
 
-        $app['config']->set('statamic.plugrbase_maintenance_mode', require(__DIR__.'/../config/plugrbase_maintenance_mode.php'));
-
         Statamic::pushCpRoutes(function () {
             return require_once realpath(__DIR__.'/../routes/cp.php');
         });
+
+        Statamic::pushWebRoutes(function () {
+            return require_once realpath(__DIR__.'/../routes/web.php');
+        });
+
+        $app['config']->set('statamic.plugrbase-maintenance-mode', require(__DIR__.'/../config/plugrbase-maintenance-mode.php'));
     }
 
     /**
