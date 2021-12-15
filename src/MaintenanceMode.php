@@ -41,13 +41,23 @@ class MaintenanceMode
 
     public function setSettings()
     {
-        $settings = tap(YAML::file(config('statamic.plugrbase-maintenance-mode.path'))->parse());
-        
-        if (isset($settings->target)) {
+        $settings = [];
+
+        if (config()->has('statamic.plugrbase-maintenance-mode.path')) {
+            $settings = tap(YAML::file(config('statamic.plugrbase-maintenance-mode.path'))->parse());
+        }
+
+        if (isset($settings->target) && count($settings->target)) {
             $this->settings = $settings->target;
             $this->enabled = $this->settings['maintenance_mode_enabled'];
-            $this->title = $this->settings['maintenance_mode_title'];
-            $this->message = $this->settings['maintenance_mode_message'];
+
+            if (isset($this->settings['maintenance_mode_title']) && $this->settings['maintenance_mode_title'] != '') {
+                $this->title = $this->settings['maintenance_mode_title'];
+            }
+            
+            if (isset($this->settings['maintenance_mode_message']) && $this->settings['maintenance_mode_message'] != '') {
+                $this->message = $this->settings['maintenance_mode_message'];
+            }
         }
     }
 
