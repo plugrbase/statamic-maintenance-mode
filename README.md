@@ -6,7 +6,9 @@
 
 <!-- /statamic:hide -->
 
-This addons adds an environment bar to the control panel so that you know your working environment. You can change the colors, texts and enable / disable the bar per environment. 
+A tiny addon for Statamic to set the website in maintenance mode and block all non-logged in users from accessing it.
+
+NB: If you want to have full control and set your own protection flow, please see [Protecting content](https://statamic.dev/protecting-content).
 
 # Installation
 
