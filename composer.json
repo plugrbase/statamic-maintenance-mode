@@ -44,6 +44,9 @@
         ],
         "test": [
             "php -d memory_limit=-1 -d max_execution_time=0 ./vendor/bin/phpunit"
+        ],
+        "pre-update-cmd": [
+            "Statamic\\Console\\Composer\\Scripts::preUpdateCmd"
         ]
     }
 }
