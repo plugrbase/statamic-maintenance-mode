@@ -13,10 +13,28 @@ class SettingsTest extends TestCase
         $this->signInAdmin();
     }
 
-    public function test_can_see_settings_form(): void
+    /** @test */
+    public function cannot_see_settings_with_no_permissions(): void
     {
-        // @todo - check issue when checking route
+        $this->signInUser();
+
         $this->get(cp_route('plugrbase.maintenance.settings.index'))
-            ->assertSee('Maintenance mode settings');
+             ->assertRedirect(cp_route('index'));
+    }
+
+    /** @test */
+    public function can_update_settings_without_error(): void
+    {
+        $payload = [
+            'enabled'    => true,
+            'expireTime' => 999,
+            'allowedAddresses' => [],
+            'allowedDomains' => [],
+        ];
+
+        $this->patch(cp_route('plugrbase.maintenance.settings.update'), $payload)->assertOk();
+
+        $this->get(cp_route('plugrbase.maintenance.settings.index'))
+             ->assertSee(999);
     }
 }

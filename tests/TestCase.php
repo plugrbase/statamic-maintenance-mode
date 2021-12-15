@@ -5,6 +5,7 @@ namespace Plugrbase\MaintenanceMode\Tests;
 use Statamic\Extend\Manifest;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Plugrbase\MaintenanceMode\ServiceProvider;
+use Statamic\Facades\Role;
 use Statamic\Facades\User;
 use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
@@ -12,7 +13,7 @@ use Statamic\Statamic;
 abstract class TestCase extends OrchestraTestCase
 {
     protected bool $shouldFakeVersion = true;
-    
+
     /**
      * Setup the test environment.
      */
@@ -89,6 +90,23 @@ abstract class TestCase extends OrchestraTestCase
     {
         $user = User::make();
         $user->id(1)->email('test@mail.de')->makeSuper();
+        $this->be($user);
+
+        return $user;
+    }
+
+    /**
+     * Sign in a Statamic user.
+     *
+     * @param  array  $permissions
+     * @return mixed
+     */
+    protected function signInUser($permissions = [])
+    {
+        $role = Role::make()->handle('test')->title('Test')->addPermission($permissions)->save();
+
+        $user = User::make();
+        $user->id(1)->email('test@mail.de')->assignRole($role);
         $this->be($user);
 
         return $user;
