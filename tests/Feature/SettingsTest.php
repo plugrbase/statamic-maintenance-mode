@@ -13,7 +13,6 @@ class SettingsTest extends TestCase
         $this->signInAdmin();
     }
 
-    /** @test */
     public function cannot_see_settings_with_no_permissions(): void
     {
         $this->signInUser();
