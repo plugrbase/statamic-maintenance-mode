@@ -12,20 +12,12 @@ use Statamic\Statamic;
 
 abstract class TestCase extends OrchestraTestCase
 {
-    protected bool $shouldFakeVersion = true;
-
     /**
      * Setup the test environment.
      */
     protected function setUp(): void
     {
         parent::setUp();
-
-        if ($this->shouldFakeVersion) {
-            /** @phpstan-ignore-next-line */
-            \Facades\Statamic\Version::shouldReceive('get')->andReturn('3.0.10');
-            $this->addToAssertionCount(-1); // Dont want to assert this
-        }
     }
 
     protected function getPackageProviders($app)
