@@ -19,6 +19,10 @@ class HandleMaintenanceMode
         $url = Str::start($request->getRequestUri(), '/');
         $maintenanceMode = new MaintenanceMode();
 
+        if (auth()->user() && (auth()->user()->isSuper() || auth()->user()->hasPermission("access cp"))) {
+            return $next($request);
+        }
+
         if ($maintenanceMode->isEnabled() === false && $url == '/maintenance-mode') {
             return redirect('/');
         }
