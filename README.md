@@ -18,7 +18,7 @@ You can install the package via composer:
 composer require plugrbase/statamic-maintenance-mode
 ```
 
-Optionally publish the config file of this package:
+Publish the config file of this package:
 
 ```bash
 php artisan vendor:publish --provider="Plugrbase\MaintenanceMode\ServiceProvider"
