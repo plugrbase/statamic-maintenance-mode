@@ -50,10 +50,10 @@ class ServiceProvider extends AddonServiceProvider
 
     protected function bootAddonConfig()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/plugrbase_maintenance_mode.php', 'statamic.plugrbase_maintenance_mode');
+        $this->mergeConfigFrom(__DIR__.'/../config/plugrbase-maintenance-mode.php', 'statamic.plugrbase-maintenance-mode');
 
         $this->publishes([
-            __DIR__.'/../config/plugrbase_maintenance_mode.php' => config_path('statamic/plugrbase_maintenance_mode.php'),
+            __DIR__.'/../config/plugrbase-maintenance-mode.php' => config_path('statamic/plugrbase-maintenance-mode.php'),
         ], 'plugrbase-maintenance-mode-config');
 
         return $this;

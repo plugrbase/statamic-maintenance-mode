@@ -16,7 +16,7 @@ class MaintenanceModeAdminController extends CpController
     {
         parent::__construct($request);
 
-        $this->path = config('statamic.plugrbase_maintenance_mode.path');
+        $this->path = config('statamic.plugrbase-maintenance-mode.path');
     }
 
     public function index()

@@ -41,7 +41,7 @@ class MaintenanceMode
 
     public function setSettings()
     {
-        $settings = tap(YAML::file(config('statamic.plugrbase_maintenance_mode.path'))->parse());
+        $settings = tap(YAML::file(config('statamic.plugrbase-maintenance-mode.path'))->parse());
         
         if (isset($settings->target)) {
             $this->settings = $settings->target;
