@@ -12,13 +12,9 @@ class ServiceProvider extends AddonServiceProvider
 
     protected $fieldtypes = [];
 
-    protected $scripts = [
-        __DIR__.'/../dist/js/cp.js'
-    ];
+    protected $scripts = [];
 
-    protected $stylesheets = [
-        __DIR__.'/../dist/css/web.css'
-    ];
+    protected $stylesheets = [];
 
     protected $routes = [
         'cp' => __DIR__.'/../routes/cp.php',

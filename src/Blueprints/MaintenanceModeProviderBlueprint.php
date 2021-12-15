@@ -17,7 +17,14 @@ class MaintenanceModeProviderBlueprint
                             'field' => [
                                 'type' => 'toggle',
                                 'display' => 'Enabled',
-                                'width' => 50,
+                            ],
+                        ],
+                        [
+                            'handle' => 'maintenance_mode_title',
+                            'field' => [
+                                'type' => 'text',
+                                'display' => 'Title',
+                                'instructions'  => 'The title to display in the maintenance page',
                             ],
                         ],
                         [

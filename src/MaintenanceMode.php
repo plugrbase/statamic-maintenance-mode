@@ -14,6 +14,13 @@ class MaintenanceMode
     protected $enabled = false;
 
     /**
+     * The title to display
+     *
+     * @var string
+     */
+    protected $title = '';
+
+    /**
      * The message to display
      *
      * @var string
@@ -39,6 +46,7 @@ class MaintenanceMode
         if (isset($settings->target)) {
             $this->settings = $settings->target;
             $this->enabled = $this->settings['maintenance_mode_enabled'];
+            $this->title = $this->settings['maintenance_mode_title'];
             $this->message = $this->settings['maintenance_mode_message'];
         }
     }
@@ -51,6 +59,16 @@ class MaintenanceMode
     public function isEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * The title.
+     *
+     * @return string
+     */
+    public function title()
+    {
+        return $this->title;
     }
 
     /**

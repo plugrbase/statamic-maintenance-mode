@@ -11,6 +11,6 @@ class MaintenanceModeController
         $maintenanceMode = new MaintenanceMode();
 
         return view('statamic-maintenance-mode::maintenance')
-            ->with(['message' => $maintenanceMode->message()]);
+            ->with(['title' => $maintenanceMode->title(), 'message' => $maintenanceMode->message()]);
     }
 }
