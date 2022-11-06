@@ -45,29 +45,31 @@ class ServiceProvider extends AddonServiceProvider
                     </g></g></svg>');
         });
 
-        if ($this->app->runningInConsole()) {
-            $this->bootAddonConfig();
-        }
+        $this->bootAddonConfig()->bootAddonViews();
     }
 
     protected function bootAddonConfig()
     {
         $this->publishes([
-            __DIR__.'/../config/plugrbase-maintenance-mode.php' => config_path('statamic/plugrbase-maintenance-mode.php'),
-        ], 'plugrbase-maintenance-mode-config');
-
-
-        //Publish views
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/plugrbase-maintenance-mode/resources/views'),
-        ], 'plugrbase-maintenance-mode-views');
+            __DIR__.'/../config/statamic-maintenance-mode.php' => config_path('statamic/statamic-maintenance-mode.php'),
+        ], 'statamic-maintenance-mode-config');
 
         return $this;
     }
 
+    protected function bootAddonViews() {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'login-notify');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/statamic-maintenance-mode'),
+        ], 'statamic-maintenance-mode-views');
+
+        return $this;
+      }
+
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/plugrbase-maintenance-mode.php', 'plugrbase-maintenance-mode');
+        $this->mergeConfigFrom(__DIR__.'/../config/statamic-maintenance-mode.php', 'statamic-maintenance-mode');
 
         parent::register();
     }
