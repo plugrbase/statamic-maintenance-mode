@@ -51,7 +51,7 @@ class ServiceProvider extends AddonServiceProvider
     protected function bootAddonConfig()
     {
         $this->publishes([
-            __DIR__.'/../config/statamic-maintenance-mode.php' => config_path('statamic/statamic-maintenance-mode.php'),
+            __DIR__.'/../config/plugrbase-maintenance-mode.php' => config_path('statamic/plugrbase-maintenance-mode.php'),
         ], 'statamic-maintenance-mode-config');
 
         return $this;
@@ -69,7 +69,7 @@ class ServiceProvider extends AddonServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/statamic-maintenance-mode.php', 'statamic-maintenance-mode');
+        $this->mergeConfigFrom(__DIR__.'/../config/plugrbase-maintenance-mode.php', 'statamic-maintenance-mode');
 
         parent::register();
     }
