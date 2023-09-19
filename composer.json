@@ -48,5 +48,10 @@
         "pre-update-cmd": [
             "Statamic\\Console\\Composer\\Scripts::preUpdateCmd"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
     }
 }
