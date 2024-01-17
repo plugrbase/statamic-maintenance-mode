@@ -1,6 +1,6 @@
 <!-- statamic:hide -->
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/plugrbase/statamic-maintenance-mode?style=flat-square)
-![Statamic 3.0+](https://img.shields.io/badge/Statamic-3.0+-FF269E?style=flat-square&link=https://statamic.com)
+![Statamic 4.0+](https://img.shields.io/badge/Statamic-3.0+-FF269E?style=flat-square&link=https://statamic.com)
 
 # Statamic Maintenance mode
 
