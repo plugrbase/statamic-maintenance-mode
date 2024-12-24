@@ -10,6 +10,8 @@ A tiny addon for Statamic to set the website in maintenance mode and block all n
 
 NB: If you want to have full control and set your own protection flow, please see [Protecting content](https://statamic.dev/protecting-content).
 
+Example usage: [https://www.boutique-hotels.paris/](https://www.boutique-hotels.paris/)
+
 # Installation
 
 You can install the package via composer:
